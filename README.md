@@ -1,99 +1,60 @@
-
-##  products table
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null:false|
-|detail|text|null:false|
-|condition|string|null:false|
-|delivery_fee|integer|null:false|
-|shipping_area|string|null:false|
-|shipping_days|integer|null:false| 
-|price|integer|null:false|
-|user_id|references|null: false, foreign_key: true|
-|buyer_id|references|null: false, foreign_key: true|
-|category_id|references|null: false, foreign_key: true|
-|brand_id|references|null: false, foreign_key: true|
-
-### Association
-- has_many :product_images
-- belongs_to :brand
-- belongs_to :category
-- belongs_to :user
-
-
-##  product_images table
-|Column|Type|Options|
-|------|----|-------|
-|image|string|null:false|
-|product_id|references|null: false, foreign_key: true|
-
-### Association
-- belongs_to :product
-
-
-## categories table
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null:false|
-|ancestry|string|
-
-### Association
-- has_many :products
-
-
-##  brands table
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-
-### Association
-- has_many :products
-
-
-##  users table
-|Column|Type|Options|
-|------|----|-------|
-|nickname|string|null:false|
-|email|string|null: false, uniqueness: true|
-|password|string|null: false, uniqueness: true|
-|last_name|string|null: false|
-|first_name|string|null: false|
-|ruby_last_name|string|null:false|
-|ruby_first_name|string|null:false|
-|birthdate|date|null:false|
-
-### Association
-- has_many :products
-- has_one :credit_card
-- has_one :shipping_address
-
-
-## shipping_address table
-|Column|Type|Options|
-|------|----|-------|
-|last_name|string|null:false|
-|first_name|string|null:false|
-|last_name_kana|string|null:false|
-|first_name_kana|string|null:false|
-|postal_code|integer|null: false| 
-|prefectures|string|null: false|
-|city|string|null: false|
-|address_detail|string|null: false|
-|building_name|string|
-|room_number|string|
-|phone_number|string|
-|user_id|references|null: false, foreign_key: true|
+## items table
+| Column                | Type              | Option                         |
+| --------------------- | ----------------- | ------------------------------ |
+| trade name            | string            | null: false                    |
+| category_id           | integer           | null: false                    |
+| condition_id          | integer           | null: false                    |
+| postage_id            | integer           | null: false                    |
+| shipping_area_id      | integer           | null: false                    |
+| shipping_days_id      | integer           | null: false                    |
+| detail                | text              | null: false                    |
+| price                 | integer           | null: false                    |
+| user                  | references        | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
+- has_one :purchase
 
 
-## credit-cards table
-|Column|Type|Options|
-|------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|customer_id|references|null: false, foreign_key: true|
-|card_id|references|null: false, foreign_key: true|
+## users table
+| Column                | Type              | Option                         |
+| --------------------- | ----------------- | ------------------------------ |
+| nickname              | string            | null: false                    |
+| email                 | string            | null: false, uniqueness: true  |
+| encrypted_password    | string            | null: false                    |
+| last_name             | string            | null: false                    |
+| first_name            | string            | null: false                    |
+| last_name_kana        | string            | null: false                    |
+| first_name_kana       | string            | null: false                    |
+| birthday              | date              | null: false                    |
+
+### Association
+- has_many :items
+- has_many :purchases
+
+
+## addresses table
+| Column                | Type              | Option                         |
+| --------------------- | ----------------- | ------------------------------ |
+| post_code             | integer           | null: false                    |
+| city_id               | integer           | null: false                    |
+| municipality          | string            | null: false                    |
+| block                 | string            | null: false                    |
+| building_name         | string            |                                |
+| phone_number          | string            | null: false                    |
+| purchase              | references        | null: false, foreign_key: true |
+
+### Association
+- belongs_to :purchase
+
+
+## purchases　table
+| Column                | Type              | Option                         |
+| --------------------- | ----------------- | ------------------------------ |
+| user                  | references        | null: false, foreign_key: true |
+| item                  | references        | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
+- has_one :address
+- belongs_to :item
