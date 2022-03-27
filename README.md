@@ -1,11 +1,11 @@
 ## items table
 | Column                | Type              | Option                         |
 | --------------------- | ----------------- | ------------------------------ |
-| trade name            | string            | null: false                    |
+| trade_name            | string            | null: false                    |
 | category_id           | integer           | null: false                    |
 | condition_id          | integer           | null: false                    |
 | postage_id            | integer           | null: false                    |
-| shipping_area_id      | integer           | null: false                    |
+| prefecture_id  　　    | integer           | null: false                    |
 | shipping_days_id      | integer           | null: false                    |
 | detail                | text              | null: false                    |
 | price                 | integer           | null: false                    |
@@ -37,7 +37,7 @@
 | Column                | Type              | Option                         |
 | --------------------- | ----------------- | ------------------------------ |
 | post_code             | integer           | null: false                    |
-| city_id               | integer           | null: false                    |
+| prefecture_id         | integer           | null: false                    |
 | municipality          | string            | null: false                    |
 | block                 | string            | null: false                    |
 | building_name         | string            |                                |
