@@ -36,7 +36,7 @@
 ## addresses table
 | Column                | Type              | Option                         |
 | --------------------- | ----------------- | ------------------------------ |
-| post_code             | integer           | null: false                    |
+| post_code             | string            | null: false                    |
 | prefecture_id         | integer           | null: false                    |
 | municipality          | string            | null: false                    |
 | block                 | string            | null: false                    |
