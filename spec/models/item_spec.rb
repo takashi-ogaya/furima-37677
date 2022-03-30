@@ -13,14 +13,14 @@ RSpec.describe Item, type: :model do
     end
     context '商品が出品できない場合' do
       it '商品名が空では出品できない' do
-        @item.title = ''
+        @item.trade_name = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Title can't be blank")
+        expect(@item.errors.full_messages).to include("Trade name can't be blank")
       end
       it '説明が空では出品できない' do
-        @item.explanation = ''
+        @item.detail = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Explanation can't be blank")
+        expect(@item.errors.full_messages).to include("Detail can't be blank")
       end
       it 'カテゴリーに「1」が選択されている場合は出品できない' do
         @item.category_id = '1'
@@ -28,9 +28,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it '商品の状態に「1」が選択されている場合は出品できない' do
-        @item.situation_id = '1'
+        @item.condition_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Situation can't be blank")
+        expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
       it '配送料の負担に「1」が選択されている場合は出品できない' do
         @item.postage_id = '1'
@@ -38,14 +38,14 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Postage can't be blank")
       end
       it '発送元の地域に「1」が選択されている場合は出品できない' do
-        @item.city_id = '1'
+        @item.prefecture_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("City can't be blank")
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it '発送までの日数に「1」が選択されている場合は出品できない' do
-        @item.shipping_date_id = '1'
+        @item.shipping_days_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping date can't be blank")
+        expect(@item.errors.full_messages).to include("Shipping days can't be blank")
       end
       it '値段が空では出品できない' do
         @item.price = ''
