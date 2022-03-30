@@ -19,38 +19,37 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def show
-  # end
+  def show
+  end
 
-  # def edit
-  #   redirect_to action: :index unless current_user.id == @item.user_id
-  # end
+  def edit
+    redirect_to action: :index unless current_user.id == @item.user_id
+  end
 
-  # def update
-  #   if @item.update(item_params)
-  #     redirect_to item_path(params[:id])
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(params[:id])
+    else
+      render :edit
+    end
+  end
 
-  # def destroy
-  #   @item.destroy
-  #   redirect_to action: :index
-  # end
+  def destroy
+    @item.destroy
+    redirect_to action: :index
+  end
 
-  # private
+  private
 
-  # def item_params
-  #   params.require(:item).permit(:title, :category_id, :situation_id, :postage_id, :city_id, :shipping_date_id, :explanation,
-  #                                :price, :image).merge(user_id: current_user.id)
-  # end
+  def item_params
+    params.require(:item).permit(:trade_name, :category_id, :condition_id, :postage_id, :prefecture_id, :shipping_days_id, :detail,:price, :image).merge(user_id: current_user.id)
+  end
 
-  # def set_item
-  #   @item = Item.find(params[:id])
-  # end
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
-  # def sold_edit
-  #   redirect_to root_path if @item.purchase.present?
-  # end
+  def sold_edit
+    redirect_to root_path if @item.purchase.present?
+  end
 end
