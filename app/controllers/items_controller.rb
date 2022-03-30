@@ -23,26 +23,26 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to action: :index unless current_user.id == @item.user_id
+    # redirect_to action: :index unless current_user.id == @item.user_id
   end
 
   def update
-    if @item.update(item_params)
-      redirect_to item_path(params[:id])
-    else
-      render :edit
-    end
+    # if @item.update(item_params)
+    #   redirect_to item_path(params[:id])
+    # else
+    #   render :edit
+    # end
   end
 
   def destroy
-    @item.destroy
-    redirect_to action: :index
+    # @item.destroy
+    # redirect_to action: :index
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:trade_name, :category_id, :condition_id, :postage_id, :prefecture_id, :shipping_days_id, :detail,:price, :image).merge(user_id: current_user.id)
+    # params.require(:item).permit(:trade_name, :category_id, :condition_id, :postage_id, :prefecture_id, :shipping_days_id, :detail,:price, :image).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -50,6 +50,6 @@ class ItemsController < ApplicationController
   end
 
   def sold_edit
-    redirect_to root_path if @item.purchase.present?
+    # redirect_to root_path if @item.purchase.present?
   end
 end
