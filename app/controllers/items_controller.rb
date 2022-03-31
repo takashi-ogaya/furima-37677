@@ -50,6 +50,6 @@ class ItemsController < ApplicationController
   end
 
   def sold_edit
-     redirect_to root_path if @item.purchase.present?
+    #  redirect_to root_path if @item.purchase.present?
   end
 end
