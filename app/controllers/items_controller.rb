@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   # before_action :set_item, only: [:show, :edit, :update, :destroy]
   # before_action :sold_edit, only: :edit
   def index
-    #  @items = Item.all.order(created_at: :desc)
+     @items = Item.all.order(created_at: :desc)
   end
 
    def new
@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
    end
 
   def create
-    @item = Item.new(item_params)
+     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
     else
@@ -50,6 +50,6 @@ class ItemsController < ApplicationController
   end
 
   def sold_edit
-    # redirect_to root_path if @item.purchase.present?
+     redirect_to root_path if @item.purchase.present?
   end
 end
