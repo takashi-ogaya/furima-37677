@@ -1,5 +1,4 @@
-class PurchaseAddress < ApplicationRecord
-
+class PurchaseAddress
   include ActiveModel::Model
   attr_accessor :post_code, :prefecture_id, :municipality, :block, :building_name, :phone_number, :user_id, :item_id, :token
 
