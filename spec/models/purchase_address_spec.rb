@@ -1,4 +1,7 @@
-Spec.describe PurchaseAddress, type: :model do
+require 'rails_helper'
+
+RSpec.describe PurchaseAddress, type: :model do
+
   before do
     @user = FactoryBot.create(:user)
     @item = FactoryBot.create(:item)
@@ -10,8 +13,8 @@ Spec.describe PurchaseAddress, type: :model do
       it 'すべての値が正しく入力されていれば購入できる' do
         expect(@purchase_address).to be_valid
       end
-      it 'buildingは空でも購入できる' do
-        @purchase_address.building = ''
+      it 'building_nameは空でも購入できる' do
+        @purchase_address.building_name = ''
         expect(@purchase_address).to be_valid
       end
     end
@@ -68,14 +71,14 @@ Spec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
       end
       it 'userが紐付いていなければ購入できない' do
-        @purchase_address.user = nil
+        @purchase_address.user_id = nil
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('User must exist')
+        expect(@purchase_address.errors.full_messages).to include("User can't be blank")
       end
       it 'itemが紐付いていなければ購入できない' do
-        @purchase_address.item = nil
+        @purchase_address.item_id = nil
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Item must exist')
+        expect(@purchase_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
